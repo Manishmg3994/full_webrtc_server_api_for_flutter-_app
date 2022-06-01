@@ -19,4 +19,4 @@ mongoose.connect(MONGO_DB_CONFIG, { useNewUrlParser: true, useUnifiedTopology: t
 });
 app.use(express.json());
 app.use("/api", require("./routes/app.routes"));
-serveer.listen(process.env.port || 4000, function() { console.log("Ready to Go!"); });
+server.listen(process.env.port || 4000, function() { console.log("Ready to Go!"); });
