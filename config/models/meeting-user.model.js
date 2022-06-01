@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { schema } = mongoose;
 const MeetingUser = mongoose.model("MeetingUser",
-    mongoose.Schema({
+    mongoose.schema({
         socketId: {
             type: String,
         },

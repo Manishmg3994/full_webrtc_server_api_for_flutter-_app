@@ -1,7 +1,7 @@
  const mongoose = require('mongoose');
- const { Schema } = mongoose;
+ const { schema } = mongoose;
  const meeting = mongoose.model("Meeting",
-     mongoose.Schema({
+     mongoose.schema({
          hostId: {
              type: String,
              required: true
