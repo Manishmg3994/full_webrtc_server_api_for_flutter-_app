@@ -59,7 +59,7 @@ async function checkMeetingExisits(meetingId, callback) {
 
 async function getMeetingUser(parms, callback) {
     const { meetingId, userId } = parms;
-    meetingUser.find({ meetingId, userid }).then((response) => {
+    meetingUser.find({ meetingId, userId }).then((response) => {
             return callback(null, response[0])
         })
         .catch((error) => { return callback(error) });
