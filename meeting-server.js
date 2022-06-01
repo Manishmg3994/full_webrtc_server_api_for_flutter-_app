@@ -14,12 +14,12 @@ function parseMessage(message) {
 }
 
 function listenMessage(meetingId, socket, meetingServer) {
-    socket.on("message", (message) => handleMessage(meetingId, socket, meetingServer));
+    socket.on('message', (message) => handleMessage(meetingId, socket, meetingServer));
 }
 
 function handleMessage(meetingId, socket, message, meetingServer) {
-    varpayload = "";
-    if (typeofmessage == 'string') {
+    var payload = "";
+    if (typeof message == 'string') {
         payload = parseMessage(message);
     } else {
         payload = message;

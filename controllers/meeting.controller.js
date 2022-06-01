@@ -22,15 +22,15 @@ exports.startMeeting = (req, res, next) => {
         });
     })
 }
-exports.checkMeetingExisits = (req, res, next) => {
+exports.checkMeetingExists = (req, res, next) => {
     const { meetingId } = req.query;
-    meetingServices.checkMeetingExisits(meetingId, (error, results) => {
+    meetingServices.checkMeetingExists(meetingId, (error, results) => {
         if (error) {
             return next(error);
 
         }
         return res.status(200).send({
-            message: "Success",
+            message: "Success", //here s is missing
             data: results,
         });
     })

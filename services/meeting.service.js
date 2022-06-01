@@ -7,11 +7,13 @@ async function getAllMeetingUsers(meetId, callback) {
             return callback(null, response);
 
         })
-        .catch((error) => { return callback(error); });
+        .catch((error) => {
+            return callback(error);
+        });
 }
 
-async function startMeeting(parms, callback) {
-    const meetingSchema = new meeting(parms);
+async function startMeeting(params, callback) {
+    const meetingSchema = new meeting(params);
     meetingSchema
         .save()
         .then((response) => {
@@ -26,12 +28,12 @@ async function startMeeting(parms, callback) {
 
 
 
-async function joinMeeting(parms, callback) {
-    const meetingUserModel = new meetingUser(parms);
+async function joinMeeting(params, callback) {
+    const meetingUserModel = new meetingUser(params);
     meetingUserModel
         .save()
         .then(async(response) => {
-            await meeting.findOneAndUpdate({ id: parms.meetingId }, {
+            await meeting.findOneAndUpdate({ id: params.meetingId }, {
                 $addToSet: { "meetingUsers": meetingUserModel }
 
             })
@@ -39,27 +41,31 @@ async function joinMeeting(parms, callback) {
         })
         .catch((error) => { return callback(error); });
 }
-async function isMeetingPresennt(meetingId, callback) {
-    meeting.findById(meetingId).populate("meetingUsers", "MeetingUser").then((response) => {
-        if (!response) callback("Invalid Meeting Id");
-        else callback(null, true);
-    }).catch((error) => {
-        return callback(error, false)
-    });
+async function isMeetingPresent(meetingId, callback) {
+    meeting.findById(meetingId)
+        .populate("meetingUsers", "MeetingUser")
+        .then((response) => {
+            if (!response) callback("Invalid Meeting Id");
+            else callback(null, true);
+        }).catch((error) => {
+            return callback(error, false)
+        });
 }
 
-async function checkMeetingExisits(meetingId, callback) {
-    meeting.findById(meetingId, hostId, hostName, sartTime).populate("meetingUsers", "MeetingUser").then((response) => {
-        if (!response) callback("Invalid Meeting Id");
-        else callback(null, true);
-    }).catch((error) => {
-        return callback(error, false)
-    });
+async function checkMeetingExists(meetingId, callback) {
+    meeting.findById(meetingId, hostId, hostName, startTime) ///here column can't be access
+        .populate("meetingUsers", "MeetingUser")
+        .then((response) => {
+            if (!response) callback("Invalid Meeting Id");
+            else callback(null, true);
+        }).catch((error) => {
+            return callback(error, false)
+        });
 }
 
 
-async function getMeetingUser(parms, callback) {
-    const { meetingId, userId } = parms;
+async function getMeetingUser(params, callback) {
+    const { meetingId, userId } = params;
     meetingUser.find({ meetingId, userId }).then((response) => {
             return callback(null, response[0])
         })
@@ -69,19 +75,19 @@ async function getMeetingUser(parms, callback) {
 
 
 
-async function updateMeetingUser(parms, callback) {
+async function updateMeetingUser(params, callback) {
     meetingUser
-        .updateOne({ userId: parms.userId }, { $set: parms }, { new: true })
+        .updateOne({ userId: params.userId }, { $set: params }, { new: true })
         .then((response) => {
             return callback(null, response);
 
         }).catch((error) => { return callback(error); });
 }
 
-async function getUserBySocketId(socketId, callback) {
-    const { meetingId, socketId } = parms;
+async function getUserBySocketId(params, callback) {
+    const { meetingId, socketId } = params;
     meetingUser.find({ meetingId, socketId }).limit(1).then((response) => {
-            returncallback(null, response);
+            return callback(null, response);
         })
         .catch((error) => { return callback(error); });
 }
@@ -89,8 +95,8 @@ module.exports = {
     startMeeting,
     joinMeeting,
     getAllMeetingUsers,
-    isMeetingPresennt,
-    checkMeetingExisits,
+    isMeetingPresent,
+    checkMeetingExists, //changed name
     getUserBySocketId,
     updateMeetingUser,
     getMeetingUser

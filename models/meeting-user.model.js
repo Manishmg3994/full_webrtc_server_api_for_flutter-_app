@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const { schema } = mongoose;
-const MeetingUser = mongoose.model("MeetingUser",
-    mongoose.schema({
+const { Schema } = mongoose;
+const meetingUser = mongoose.model(
+    "MeetingUser",
+    mongoose.Schema({
         socketId: {
             type: String,
         },
@@ -26,7 +27,8 @@ const MeetingUser = mongoose.model("MeetingUser",
             required: true
         },
 
-    }, { timestamps: true }));
+    }, { timestamps: true })
+);
 module.exports = {
-    MeetingUser
-};
+    meetingUser
+}

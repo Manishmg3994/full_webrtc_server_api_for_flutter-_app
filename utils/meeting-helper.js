@@ -4,7 +4,9 @@ async function joinMeeting(meetingId, socket, payload, meetingServer) {
     const { userId, name } = payload;
     meetingServices.isMeetingPresent(meetingId, async(error, results) => {
         if (error && !results) {
-            sendMessage(socket, { type: MeetingPayloadEnum.NOT_FOUND });
+            sendMessage(socket, {
+                type: MeetingPayloadEnum.NOT_FOUND
+            });
 
         }
 
@@ -37,7 +39,7 @@ async function joinMeeting(meetingId, socket, payload, meetingServer) {
 
 function forwardConnectionRequest(meetingId, socket, meetingServer, payload) {
     const { userId, otherUserId, name } = payload.data;
-    varmodel = {
+    var model = {
         meetingId: meetingId,
         userId: otherUserId,
     };
@@ -59,7 +61,7 @@ function forwardConnectionRequest(meetingId, socket, meetingServer, payload) {
 
 function forwardIceCandidate(meetingId, socket, meetingServer, payload) {
     const { userId, otherUserId, candidate } = payload.data;
-    varmodel = {
+    var model = {
         meetingId: meetingId,
         userId: otherUserId,
     };
@@ -83,7 +85,7 @@ function forwardIceCandidate(meetingId, socket, meetingServer, payload) {
 
 function forwardOfferSDP(meetingId, socket, meetingServer, payload) {
     const { userId, otherUserId, sdp } = payload.data;
-    varmodel = {
+    var model = {
         meetingId: meetingId,
         userId: otherUserId,
     };
@@ -103,7 +105,7 @@ function forwardOfferSDP(meetingId, socket, meetingServer, payload) {
 
 function forwardAnswerSDP(meetingId, socket, meetingServer, payload) {
     const { userId, otherUserId, sdp } = payload.data;
-    varmodel = {
+    var model = {
         meetingId: meetingId,
         userId: otherUserId,
     };
@@ -183,7 +185,7 @@ function addUser(socket, { meetingId, userId, name }) {
 
                     }
                     if (error) {
-                        reeject(error);
+                        reject(error);
                     }
                 });
             } else {

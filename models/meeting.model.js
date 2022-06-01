@@ -1,7 +1,7 @@
  const mongoose = require('mongoose');
- const { schema } = mongoose;
+ const { Schema } = mongoose;
  const meeting = mongoose.model("Meeting",
-     mongoose.schema({
+     mongoose.Schema({
          hostId: {
              type: String,
              required: true
@@ -29,4 +29,4 @@
      }, { timestamps: true }));
  module.exports = {
      meeting
- };
+ }
