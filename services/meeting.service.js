@@ -1,6 +1,7 @@
 const { meeting } = require("../models/meeting.model");
 const { meetingUser } = require("../models/meeting-user.model");
 
+
 async function getAllMeetingUsers(meetId, callback) {
     meetingUser.find({ meetingId: meetId }).then((response) => {
             return callback(null, response);
