@@ -1,4 +1,4 @@
-const meetingServices = require('../services/meeting.services');
+const meetingServices = require('../services/meeting.service');
 exports.startMeeting = (req, res, next) => {
     const {
         hostId,
