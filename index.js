@@ -6,6 +6,8 @@ const http = require('http');
 const server = http.createServer(app);
 const { initMeetingServer } = require('./meeting-server');
 //express is not installed
+//TODO npm add socket.io@2.4.1
+//to start use nodemon js
 
 
 initMeetingServer(server);
@@ -13,7 +15,7 @@ initMeetingServer(server);
 //initMeetingServer(server)
 
 mongoose.Promise = global.Promise;
-mongoose.connect(MONGO_DB_CONFIG, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_DB_CONFIG.DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Database Connected");
     }).catch((error) => {

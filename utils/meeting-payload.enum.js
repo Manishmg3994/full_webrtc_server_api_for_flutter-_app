@@ -5,7 +5,7 @@ const MeetingPayloadEnum = {
     CONNECTION_REQUEST: 'connection-request',
     INCOMING_CONNECTION_REQUEST: 'incoming-connection-request',
     OFFER_SDP: 'offer-sdp',
-    ANSWER_SDP: 'answer-sdp',
+    ANSWER_SDP: 'answer-sdp', //changed
     LEAVE_MEETING: 'leave-meeting',
     END_MEETING: 'end-meeting',
     USER_LEFT: 'user-left',

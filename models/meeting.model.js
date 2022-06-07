@@ -8,7 +8,7 @@
          },
          hostName: {
              type: String,
-             required: true
+             required: false
          },
          startTime: {
              type: Date,
@@ -26,7 +26,8 @@
                  delete ret.__v;
              }
          }
-     }, { timestamps: true }));
+     }, { timestamps: true })
+ );
  module.exports = {
      meeting
  }

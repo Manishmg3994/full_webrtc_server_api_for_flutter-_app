@@ -10,7 +10,7 @@ const meetingUser = mongoose.model(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Meeting"
         },
-        UserId: {
+        userId: { //changed in new vid U to u
             type: String,
             required: true
         },

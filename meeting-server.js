@@ -26,21 +26,23 @@ function handleMessage(meetingId, socket, message, meetingServer) {
     }
     switch (payload.type) {
         case MeetingPayloadEnum.JOIN_MEETING:
-            meetingHelper.joinMeeting(meetingId, socket, payload, meetingServer);
+            meetingHelper.joinMeeting(meetingId, socket, meetingServer, payload);
             break;
         case MeetingPayloadEnum.CONNECTION_REQUEST:
-            meetingHelper.forwardConnectionRequest(meetingId, socket, payload, meetingServer);
+            meetingHelper.forwardConnectionRequest(meetingId, socket, meetingServer, payload);
             break;
         case MeetingPayloadEnum.OFFER_SDP:
-            meetingHelper.forwardOfferSDP(meetingId, socket, payload, meetingServer);
+            meetingHelper.forwardOfferSDP(meetingId, socket, meetingServer, payload);
             break;
-
+        case MeetingPayloadEnum.ICECANDIDATE:
+            meetingHelper.forwardIceCandidate(meetingId, socket, meetingServer, payload);
+            break;
 
 
 
 
         case MeetingPayloadEnum.ANSWER_SDP:
-            meetingHelper.forwardAnswerSDP(meetingId, socket, payload, meetingServer);
+            meetingHelper.forwardAnswerSDP(meetingId, socket, meetingServer, payload);
             break;
 
 
@@ -48,7 +50,7 @@ function handleMessage(meetingId, socket, message, meetingServer) {
 
 
         case MeetingPayloadEnum.LEAVE_MEETING:
-            meetingHelper.userLeft(meetingId, socket, payload, meetingServer);
+            meetingHelper.userLeft(meetingId, socket, meetingServer, payload);
             break;
 
 
@@ -56,7 +58,7 @@ function handleMessage(meetingId, socket, message, meetingServer) {
 
 
         case MeetingPayloadEnum.END_MEETING:
-            meetingHelper.endMeeting(meetingId, socket, payload, meetingServer);
+            meetingHelper.endMeeting(meetingId, socket, meetingServer, payload);
             break;
 
 
@@ -65,7 +67,7 @@ function handleMessage(meetingId, socket, message, meetingServer) {
 
         case MeetingPayloadEnum.VIDEO_TOGGLE:
         case MeetingPayloadEnum.AUDIO_TOGGLE:
-            meetingHelper.forwardEvent(meetingId, socket, payload, meetingServer);
+            meetingHelper.forwardEvent(meetingId, socket, meetingServer, payload);
             break;
 
         case MeetingPayloadEnum.UNKNOWN:
