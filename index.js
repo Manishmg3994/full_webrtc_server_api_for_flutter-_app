@@ -18,13 +18,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_DB_CONFIG.DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Database Connected");
-    }).catch((error) => {
-            console.log("Database Connection Failed error");
-        }
-
-    );
+    });
 app.use(express.json());
 app.use("/api", require("./routes/app.routes"));
-server.listen(process.env.port || 4000, function() {
+server.listen(process.env.port || 5000, function() {
     console.log("Ready to Go!");
 });

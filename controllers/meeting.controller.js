@@ -5,7 +5,7 @@ exports.startMeeting = (req, res, next) => {
         hostName
     } = req.body;
     var model = {
-        hostI: hostId,
+        hostId: hostId,
         hostName: hostName,
         startTime: Date.now()
 
